@@ -707,4 +707,38 @@ public class Main{
         System.out.println("0 - Sair");
         System.out.println("==============================");
     }
+
+    public static void adicionarFilme(ArrayList<Conteudo> catalogo, Scanner sc) {
+
+        sc.nextLine();
+
+        System.out.println("\n========== ADICIONAR FILME ==========");
+
+        System.out.print("Título: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Gênero: ");
+        String genero = sc.nextLine();
+
+        System.out.print("Ano: ");
+        int ano = sc.nextInt();
+
+        System.out.print("Nota: ");
+        double nota = sc.nextDouble();
+
+        System.out.print("Duração em minutos: ");
+        int duracao = sc.nextInt();
+
+        Filme novofilme = new Filme(
+                titulo,
+                genero,
+                ano,
+                nota,
+                duracao
+        );
+
+        catalogo.add(novofilme);
+
+        System.out.println("\nFilme adicionado com sucesso!");
+    }
 }
