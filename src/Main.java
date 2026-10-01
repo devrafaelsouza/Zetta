@@ -775,4 +775,48 @@ public class Main{
 
         System.out.println("\nSérie adicionada com sucesso!");
     }
+
+    public static void adicionarMusica(ArrayList<Conteudo> catalogo, Scanner sc) {
+
+        sc.nextLine();
+
+        System.out.println("\n========== ADICIONAR MÚSICA ==========");
+
+        System.out.print("Título: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Gênero: ");
+        String genero = sc.nextLine();
+
+        System.out.print("Ano: ");
+        int ano = sc.nextInt();
+
+        System.out.print("Nota: ");
+        double nota = sc.nextDouble();
+
+        sc.nextLine();
+
+        System.out.print("Artista: ");
+        String artista = sc.nextLine();
+
+        System.out.print("Álbum: ");
+        String album = sc.nextLine();
+
+        System.out.print("Duração em segundos: ");
+        int duracao = sc.nextInt();
+
+        Musica novaMusica = new Musica(
+                titulo,
+                genero,
+                ano,
+                nota,
+                artista,
+                album,
+                duracao
+        );
+
+        catalogo.add(novaMusica);
+
+        System.out.println("\nMúsica adicionada com sucesso!");
+    }
 }
