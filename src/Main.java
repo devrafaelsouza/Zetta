@@ -741,4 +741,38 @@ public class Main{
 
         System.out.println("\nFilme adicionado com sucesso!");
     }
+
+    public static void adicionarSerie(ArrayList<Conteudo> catalogo, Scanner sc) {
+
+        sc.nextLine();
+
+        System.out.println("\n========== ADICIONAR SÉRIE ==========");
+
+        System.out.print("Título: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Gênero: ");
+        String genero = sc.nextLine();
+
+        System.out.print("Ano: ");
+        int ano = sc.nextInt();
+
+        System.out.print("Nota: ");
+        double nota = sc.nextDouble();
+
+        System.out.print("Número de temporadas: ");
+        int temporadas = sc.nextInt();
+
+        Serie novaSerie = new Serie(
+                titulo,
+                genero,
+                ano,
+                nota,
+                temporadas
+        );
+
+        catalogo.add(novaSerie);
+
+        System.out.println("\nSérie adicionada com sucesso!");
+    }
 }
