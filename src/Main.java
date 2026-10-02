@@ -819,4 +819,56 @@ public class Main{
 
         System.out.println("\nMúsica adicionada com sucesso!");
     }
+
+    public static void removerConteudo(ArrayList<Conteudo> catalogo, Scanner sc) {
+
+        System.out.println("\n========== REMOVER CONTEÚDO ==========");
+
+        if (catalogo.isEmpty()) {
+            System.out.println("O catálogo está vazio!");
+            return;
+        }
+
+        mostrarCatalogo(catalogo);
+
+        System.out.println("0 - Voltar");
+        System.out.print("\nEscolha um conteúdo: ");
+
+        int escolha = sc.nextInt();
+
+        if (escolha == 0) {
+            return;
+        }
+
+        if (escolha < 1 || escolha > catalogo.size()) {
+            System.out.println("\nOpção inválida!");
+            return;
+        }
+
+        Conteudo conteudoSelecionado = catalogo.get(escolha - 1);
+
+        System.out.println("\nConteúdo selecionado: " + conteudoSelecionado.getTitulo());
+
+        System.out.println("\nTem certeza que deseja remover?");
+        System.out.println("1 - Sim");
+        System.out.println("2 - Não");
+
+        System.out.print("Escolha uma opção: ");
+        int confirmacao = sc.nextInt();
+
+        if (confirmacao == 1) {
+
+            catalogo.remove(conteudoSelecionado);
+
+            System.out.println("\nConteúdo removido com sucesso!");
+
+        } else if (confirmacao == 2) {
+
+            System.out.println("\nOperação cancelada.");
+
+        } else {
+
+            System.out.println("\nOpção inválida!");
+        }
+    }
 }
