@@ -872,8 +872,17 @@ public class Main{
         System.out.print("Álbum: ");
         String album = sc.nextLine();
 
-        System.out.print("Duração em segundos: ");
-        int duracao = sc.nextInt();
+        int duracao;
+
+        do {
+            System.out.print("Duração em segundos: ");
+            duracao = sc.nextInt();
+
+            if (duracao <= 0) {
+                System.out.println("A duração deve ser maior que 0!");
+            }
+
+        } while (duracao <= 0);
 
         Musica novaMusica = new Musica(
                 titulo,
