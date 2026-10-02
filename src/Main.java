@@ -779,14 +779,41 @@ public class Main{
         System.out.print("Gênero: ");
         String genero = sc.nextLine();
 
-        System.out.print("Ano: ");
-        int ano = sc.nextInt();
+        int ano;
 
-        System.out.print("Nota: ");
-        double nota = sc.nextDouble();
+        do{
+            System.out.print("Ano: ");
+            ano = sc.nextInt();
 
-        System.out.print("Número de temporadas: ");
-        int temporadas = sc.nextInt();
+            if (ano <= 0) {
+                System.out.println("O ano deve ser maior que 0!");
+            }
+
+        } while (ano <= 0);
+
+        double nota;
+
+        do {
+            System.out.print("Nota: ");
+            nota = sc.nextDouble();
+
+            if (nota < 0 || nota > 10) {
+                System.out.println("A nota deve estar entre 0 e 10!");
+            }
+            
+        } while (nota < 0 || nota > 10);
+
+        int temporadas;
+
+        do {
+            System.out.print("Número de temporadas: ");
+            temporadas = sc.nextInt();
+
+            if (temporadas <= 0) {
+                System.out.println("O número de temporadas deve ser maior que 0!");
+            }
+
+        } while (temporadas <= 0);
 
         Serie novaSerie = new Serie(
                 titulo,
@@ -813,11 +840,29 @@ public class Main{
         System.out.print("Gênero: ");
         String genero = sc.nextLine();
 
-        System.out.print("Ano: ");
-        int ano = sc.nextInt();
+        int ano;
 
-        System.out.print("Nota: ");
-        double nota = sc.nextDouble();
+        do {
+            System.out.print("Ano: ");
+            ano = sc.nextInt();
+
+            if (ano <= 0) {
+                System.out.println("O ano dve ser maior que 0!");
+            }
+            
+        } while (ano <= 0);
+
+        double nota;
+
+        do {
+            System.out.print("Nota: ");
+            nota = sc.nextDouble();
+
+            if (nota < 0 || nota > 10) {
+                System.out.println("A nota deve ser entre 0  e 10!");
+            }
+
+        } while (nota < 0 || nota > 10);
 
         sc.nextLine();
 
