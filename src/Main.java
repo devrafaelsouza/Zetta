@@ -73,8 +73,9 @@ public class Main{
                     }
 
                         int opcaoUsuario = -1;
+                        boolean contaExcluida = false;
 
-                        while (opcaoUsuario != 6){
+                        while (opcaoUsuario != 6 && !contaExcluida){
 
                             mostrarMenuUsuario();
 
@@ -169,7 +170,7 @@ public class Main{
 
                                 case 3:
 
-                                    mostrarPerfil(usuarioLogado, sc);
+                                    contaExcluida = mostrarPerfil(usuarioLogado, usuarios, sc);
 
                                     break;
 
@@ -228,25 +229,25 @@ public class Main{
 
                                 case 1:
 
-                                    System.out.println("\nAdicionar filme");
+                                    adicionarFilme(catalogo, sc);
 
                                     break;
 
                                 case 2:
 
-                                    System.out.println("\nAdiconar série");
+                                    adicionarSerie(catalogo, sc);
 
                                     break;
 
                                 case 3:
 
-                                    System.out.println("\nAdicionar música");
+                                    adicionarMusica(catalogo, sc);
 
                                     break;
 
                                 case 4:
 
-                                    System.out.println("\nRemover conteúdo");
+                                    removerConteudo(catalogo, sc);
 
                                     break;
 
@@ -408,7 +409,7 @@ public class Main{
         }
     }
 
-    public static void mostrarPerfil (Usuario usuarioLogado, Scanner sc) {
+    public static boolean mostrarPerfil (Usuario usuarioLogado, ArrayList<Usuario> usuarios, Scanner sc) {
 
         System.out.println("\n========== MEU PERFIL ==========");
 
@@ -418,6 +419,7 @@ public class Main{
         System.out.println("\n1 - Alterar nome");
         System.out.println("2 - Alterar email");
         System.out.println("3 - Alterar senha");
+        System.out.println("4 - Excluir conta");
         System.out.println("0 - Voltar");
 
         System.out.print("Escolha uma opção: ");
@@ -471,9 +473,42 @@ public class Main{
                 System.out.println("\nA senha deve ter pelo menos 6 caracteres!");
             }
 
+        } else if (opcao == 4) {
+
+            System.out.println("Tem certeza que deseja excluir sua conta?");
+            System.out.println("1 - Sim");
+            System.out.println("2 - Não");
+
+            System.out.print("Escolha uma opção: ");
+            int confirmacao = sc.nextInt();
+
+            if (confirmacao == 1) {
+
+                usuarios.remove(usuarioLogado);
+
+                System.out.println("\nConta excluída com sucesso!");
+
+                return true;
+
+            } else if (confirmacao == 2) {
+
+                System.out.println("\nOperação cancelada.");
+
+            } else {
+
+                System.out.println("\nOpção inválida!");
+            }
+
         } else if (opcao != 0) {
+
+            System.out.println("\nOpção inválida!");
+
+        } else {
+
             System.out.println("\nOpção inválida!");
         }
+
+        return false;
     }
 
     public static void mostrarHistorico(Usuario usuarioLogado, Scanner sc) {
@@ -800,7 +835,7 @@ public class Main{
             if (nota < 0 || nota > 10) {
                 System.out.println("A nota deve estar entre 0 e 10!");
             }
-            
+
         } while (nota < 0 || nota > 10);
 
         int temporadas;
