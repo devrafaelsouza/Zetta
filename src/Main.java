@@ -286,7 +286,7 @@ public class Main{
 
         for (int i = 0; i < catalogo.size(); i++){
 
-            System.out.println((i + 1) + " - " + catalogo.get(i).getTitulo());
+            System.out.println((i + 1) + " - " + catalogo.get(i).getTitulo() + " [" + catalogo.get(i).getTipo().toUpperCase() + "]");
 
         }
     }

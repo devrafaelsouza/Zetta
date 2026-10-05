@@ -29,4 +29,19 @@ public abstract class Conteudo {
     }
 
     public abstract void exibirInformacoes();
+
+    public String getTipo() {
+
+        String tipo = getClass().getSimpleName();
+
+        if (tipo.equals("Serie")) {
+            return "Série";
+        }
+
+        if (tipo.equals("Musica")) {
+            return "Música";
+        }
+
+        return tipo;
+    }
 }
