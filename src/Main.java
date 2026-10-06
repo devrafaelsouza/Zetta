@@ -86,14 +86,14 @@ public class Main{
 
                                 case 1:
 
-                                    mostrarCatalogo(catalogo);
+                                    ArrayList<Conteudo> catalogoOrdenado = mostrarCatalogo(catalogo);
 
                                     System.out.print("\nEscolha um conteúdo: ");
                                     int escolha = sc.nextInt();
 
-                                    if (escolha >= 1 && escolha <= catalogo.size()){
+                                    if (escolha >= 1 && escolha <= catalogoOrdenado.size()){
 
-                                        Conteudo selecionado = catalogo.get(escolha - 1);
+                                        Conteudo selecionado = catalogoOrdenado.get(escolha - 1);
 
                                         usuarioLogado.adicionarAoHistorico(selecionado);
 
@@ -280,15 +280,20 @@ public class Main{
         }
     }
 
-    public static void mostrarCatalogo(ArrayList<Conteudo> catalogo){
+    public static ArrayList<Conteudo> mostrarCatalogo(ArrayList<Conteudo> catalogo){
 
         System.out.println("\n========== CATÁLOGO ==========");
 
-        for (int i = 0; i < catalogo.size(); i++){
+        ArrayList<Conteudo> catalogoOrdenado = new ArrayList<>(catalogo);
 
-            System.out.println((i + 1) + " - " + catalogo.get(i).getTitulo() + " [" + catalogo.get(i).getTipo().toUpperCase() + "]");
+        catalogoOrdenado.sort((c1, c2) -> Double.compare(c2.getNota(), c1.getNota()));
+
+        for (int i = 0; i < catalogoOrdenado.size(); i++){
+
+            System.out.println((i + 1) + " - " + catalogoOrdenado.get(i).getTitulo() + " [" + catalogoOrdenado.get(i).getTipo().toUpperCase() + "]" + " - Nota: " + catalogoOrdenado.get(i).getNota());
 
         }
+        return catalogoOrdenado;
     }
 
     public static void mostrarMinhaLista(Usuario usuarioLogado){
