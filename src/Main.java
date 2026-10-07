@@ -86,7 +86,49 @@ public class Main{
 
                                 case 1:
 
-                                    ArrayList<Conteudo> catalogoOrdenado = mostrarCatalogo(catalogo);
+                                    System.out.println("\n========== FILTROS ==========");
+                                    System.out.println("1 - Todos");
+                                    System.out.println("2 - Filmes");
+                                    System.out.println("3 - Séries");
+                                    System.out.println("4 - Músicas");
+                                    System.out.println("0 - Voltar");
+
+                                    System.out.println("\nEscolha um filtro: ");
+                                    int filtro = sc.nextInt();
+
+                                    if (filtro == 0) {
+                                        break;
+                                    }
+
+                                    if (filtro < 1 || filtro > 4) {
+                                        System.out.println("\nOpção inválida!");
+                                        break;
+                                    }
+
+                                    ArrayList<Conteudo> catalogoFiltrado = new ArrayList<>();
+
+                                    for (Conteudo conteudo : catalogo) {
+
+                                        if (filtro == 1) {
+                                            catalogoFiltrado.add(conteudo);
+
+                                        } else if (filtro == 2 && conteudo instanceof Filme) {
+                                            catalogoFiltrado.add(conteudo);
+
+                                        } else if (filtro == 3 && conteudo instanceof Serie) {
+                                            catalogoFiltrado.add(conteudo);
+
+                                        } else if (filtro == 4 && conteudo instanceof Musica) {
+                                            catalogoFiltrado.add(conteudo);
+                                        }
+                                    }
+
+                                    if (catalogoFiltrado.isEmpty()) {
+                                        System.out.println("\nNenhum conteúdo encontrado para esse filtro!");
+                                        break;
+                                    }
+
+                                    ArrayList<Conteudo> catalogoOrdenado = mostrarCatalogo(catalogoFiltrado);
 
                                     System.out.print("\nEscolha um conteúdo: ");
                                     int escolha = sc.nextInt();
