@@ -350,7 +350,10 @@ public class Main{
 
             for (int i = 0; i < usuarioLogado.getMinhaLista().size(); i++){
 
-                System.out.println((i + 1) + " - " + usuarioLogado.getMinhaLista().get(i).getTitulo());
+                Conteudo conteudo = usuarioLogado.getMinhaLista().get(i);
+
+
+                System.out.println((i + 1) + " - " + conteudo.getTitulo() + " [" + conteudo.getTipo().toUpperCase() + "]" + " - Nota: " + conteudo.getNota());
 
             }
         }
@@ -363,13 +366,23 @@ public class Main{
         System.out.println("1 - Pesquisar por título");
         System.out.println("2 - Pesquisar por gênero");
         System.out.println("3 - Pesquisar por ano");
+        System.out.println("0 - Voltar");
 
         System.out.print("Escolha uma opção: ");
         int opcaoPesquisa = sc.nextInt();
         sc.nextLine();
 
+        if (opcaoPesquisa == 0) {
+            return;
+        }
+
+        if (opcaoPesquisa < 1 || opcaoPesquisa > 3) {
+            System.out.println("Opção inválida!");
+            return;
+        }
+
         System.out.println("\nDigite o que deseja procurar: ");
-        String pesquisa = sc.nextLine().toLowerCase();
+        String pesquisa = sc.nextLine().trim().toLowerCase();
 
         ArrayList<Conteudo> resultados = new ArrayList<>();
 
@@ -407,11 +420,13 @@ public class Main{
             return;
         }
 
+        resultados.sort((c1, c2) -> Double.compare(c2.getNota(), c1.getNota()));
+
         System.out.println("\n========== RESULTADOS ==========");
 
         for (int i = 0; i < resultados.size(); i++){
 
-            System.out.println((i + 1) + " - " + resultados.get(i).getTitulo());
+            System.out.println((i + 1) + " - " + resultados.get(i).getTitulo() + " [" + resultados.get(i).getTipo().toUpperCase() + "]" + " - Nota: " + resultados.get(i).getNota());
         }
 
         System.out.println("0 - Voltar");
@@ -570,7 +585,9 @@ public class Main{
 
             for (int i = 0; i < usuarioLogado.getHistorico().size(); i++){
 
-                System.out.println((i + 1) + " - " + usuarioLogado.getHistorico().get(i).getTitulo());
+                Conteudo conteudo = usuarioLogado.getHistorico().get(i);
+
+                System.out.println((i + 1) + " - " + conteudo.getTitulo() + " [" + conteudo.getTitulo() + "]" + " - Nota: " + conteudo.getNota());
             }
 
             System.out.println("\n0 - Voltar");
@@ -990,7 +1007,7 @@ public class Main{
             return;
         }
 
-        mostrarCatalogo(catalogo);
+       ArrayList<Conteudo> catalogoOrdenado = mostrarCatalogo(catalogo);
 
         System.out.println("0 - Voltar");
         System.out.print("\nEscolha um conteúdo: ");
@@ -1006,7 +1023,7 @@ public class Main{
             return;
         }
 
-        Conteudo conteudoSelecionado = catalogo.get(escolha - 1);
+        Conteudo conteudoSelecionado = catalogoOrdenado.get(escolha - 1);
 
         System.out.println("\nConteúdo selecionado: " + conteudoSelecionado.getTitulo());
 
