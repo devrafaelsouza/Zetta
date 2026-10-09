@@ -381,14 +381,49 @@ public class Main{
             return;
         }
 
+        System.out.println("\n========== FILTRAR POR TIPO ==========");
+        System.out.println("1 - Todos");
+        System.out.println("2 - Filmes");
+        System.out.println("3 - Séries");
+        System.out.println("4 - Músicas");
+        System.out.println("0 - Voltar");
+
+        System.out.print("Escolha um filtro: ");
+        int filtroTipo = sc.nextInt();
+        sc.nextLine();
+
+        if (filtroTipo == 0) {
+            return;
+        }
+
+        if (filtroTipo < 1 || filtroTipo > 4) {
+            System.out.println("\nOpção inválida!");
+            return;
+        }
+
         System.out.println("\nDigite o que deseja procurar: ");
         String pesquisa = sc.nextLine().trim().toLowerCase();
+
+        if (pesquisa.isEmpty()) {
+            System.out.println("\nA pesquisa não pode ficar vazia!");
+            return;
+        }
 
         ArrayList<Conteudo> resultados = new ArrayList<>();
 
         for (Conteudo conteudo : catalogo) {
 
             boolean corresponde = false;
+
+            boolean tipoCorresponde =
+                    filtroTipo == 1
+                    || (filtroTipo == 2 && conteudo instanceof Filme)
+                    || (filtroTipo == 3 && conteudo instanceof Serie)
+                    || (filtroTipo == 4 && conteudo instanceof Musica);
+
+            if (!tipoCorresponde) {
+                continue;
+            }
 
             if (opcaoPesquisa == 1){
 
