@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Filme extends Conteudo{
     private int duracao;
 
@@ -13,7 +15,4 @@ public class Filme extends Conteudo{
         System.out.println("Nota: " + nota);
         System.out.println("Duração: " + duracao + "Minutos");
     }
-
 }
-
-

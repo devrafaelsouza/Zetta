@@ -10,41 +10,76 @@ public class Main{
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Conteudo> catalogo = new ArrayList<>();
 
+        Persistencia persistencia = new Persistencia();
+
+        Object dadosCatalogo = persistencia.carregar("catalogo.dat");
+
+        Object dadosUsuarios = persistencia.carregar("usuarios.dat");
+
+        if (dadosUsuarios instanceof ArrayList<?>) {
+            ArrayList<?> listaUsuarios = (ArrayList<?>) dadosUsuarios;
+
+            for (Object item : listaUsuarios) {
+                if (item instanceof Usuario) {
+                    usuarios.add((Usuario) item);
+                }
+            }
+
+            System.out.println("Usuários carregados com sucesso!");
+        }
+
         Administrador administrador = new Administrador(
                 "admin",
                 "admin@zetta.com",
                 "123456"
         );
 
-        Filme filme = new Filme(
-                "Interestelar",
-                "Ficção científica",
-                2014,
-                8.7,
-                169
-        );
+        if (dadosCatalogo instanceof ArrayList<?>) {
 
-        Serie serie = new Serie(
-                "Stranger Things",
-                "Ficção científica",
-                2016,
-                8.6,
-                5
-        );
+            ArrayList<?> listaSalva = (ArrayList<?>) dadosCatalogo;
 
-        Musica musica = new Musica(
-                "Blinding Lights",
-                "Pop",
-                2019,
-                8.5,
-                "The Weeknd",
-                "After hours",
-                200
-        );
+            for (Object item : listaSalva) {
+                if (item instanceof Conteudo) {
+                    catalogo.add((Conteudo) item);
+                }
+            }
 
-        catalogo.add(filme);
-        catalogo.add(serie);
-        catalogo.add(musica);
+            System.out.println("Catálogo carregad com sucesso!");
+
+        } else {
+
+            Filme filme = new Filme(
+                    "Interestelar",
+                    "Ficção científica",
+                    2014,
+                    8.7,
+                    169
+            );
+
+            Serie serie = new Serie(
+                    "Stranger Things",
+                    "Ficção científica",
+                    2016,
+                    8.6,
+                    5
+            );
+
+            Musica musica = new Musica(
+                    "Blinding Lights",
+                    "Pop",
+                    2019,
+                    8.5,
+                    "The Weeknd",
+                    "After hours",
+                    200
+            );
+
+            catalogo.add(filme);
+            catalogo.add(serie);
+            catalogo.add(musica);
+
+            System.out.println("Catálogo inicial criado!");
+        }
 
         int opcao = -1;
 
@@ -313,6 +348,12 @@ public class Main{
                     break;
 
                 case 0:
+
+                    System.out.println("\nSalvando os dados do Zetta...");
+
+                    persistencia.salvar(usuarios, "usuarios.dat");
+                    persistencia.salvar(catalogo, "catalogo.dat");
+
                     System.out.println("Saindo do Zetta, até mais... ");
                     break;
 
