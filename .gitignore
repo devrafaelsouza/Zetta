@@ -3,3 +3,8 @@
 out/
 target/
 *.class
+# Arquivos de dados locais
+*.dat
+# Arquivos locais do IntelliJ
+*.eml
+*.userlibraries
