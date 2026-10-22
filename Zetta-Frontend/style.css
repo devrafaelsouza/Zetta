@@ -315,3 +315,221 @@ main {
         font-size: 16px;
     }
 }
+
+/* CATÁLOGO DE CONTEÚDOS */
+
+.catalogo {
+    padding: 70px 8%;
+    background: #0b0912;
+    color: #ffffff;
+}
+
+.catalogo-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.catalogo-etiqueta {
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.catalogo-cabecalho h2 {
+    margin: 12px 0 8px;
+    font-size: clamp(26px, 3vw, 36px);
+    letter-spacing: -1px;
+}
+
+.catalogo-cabecalho p {
+    margin: 0;
+    color: #a7a3b5;
+    font-size: 14px;
+}
+
+.ver-todos {
+    color: #c4b5fd;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.ver-todos span {
+    margin-left: 5px;
+}
+
+.catalogo-lista {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Adaptação para telas menores */
+
+@media (max-width: 900px) {
+    .catalogo-lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .catalogo {
+        padding: 55px 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalogo-cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .catalogo-lista {
+        gap: 14px;
+    }
+}
+
+/* ===== CARDS DOS FILMES ===== */
+
+.filme-card {
+    min-width: 0;
+    cursor: pointer;
+    transition: transforma 0.3s ease;
+}
+
+.filme-card:hover {
+    transform: translateY(-8px);
+}
+
+.filme-poster {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 14px;
+    background-color: #121321;
+    background-size: cover;
+    background-position: center;
+    isolation: isolate;
+}
+
+.filme-poster::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        to top,
+        rgba(8, 6, 15, 0.98) 0%,
+        rgba(8, 6, 15, 0.15) 55%,
+        rgba(8, 6, 15, 0.15) 100%
+    );
+}
+
+.filme-poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.18),
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.filme-card:hover .filme-poster::after {
+    opacity: 1;
+}
+
+.poster-interestelar {
+    background-image: url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=700&q=85");
+}
+
+.poster-origem {
+    background-image: url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85");
+}
+
+.poster-duna {
+    background-image: url("https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=700&q=85");
+}
+
+.poster-batman {
+    background-image: url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85");
+}
+
+.filme-nota, 
+.filme-tipo {
+    position: absolute;
+    top: 12px;
+    z-index: 1;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    background: rgba(12, 9, 23, 0.82);
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.filme-nota {
+    left: 12px;
+    color: #ffffff;
+}
+
+.filme-nota::first-letter {
+    color: #a78bfa;
+}
+
+.filme-tipo {
+    right: 12px;
+    color: #c4b5fd;
+}
+
+.filme-info {
+    padding: 13px 2px 8px;
+}
+
+.filme-info h3 {
+    margin: 0 0 7px;
+    color: #f5f3ff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.filme-info p {
+    margin: 0;
+    color: #a7a3b5;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+    .filme-nota,
+    .filme-tipo {
+        top: 7px;
+        padding: 5px 7px;
+        font-size: 10px;
+    }
+
+    .filme-nota {
+        left: 7px;
+    }
+
+    .filme-tipo {
+        right: 7px;
+    }
+
+    .filme-info h3 {
+        font-size: 14px;
+    }
+
+    .filme-info p {
+        font-size: 11px;
+    }
+}
